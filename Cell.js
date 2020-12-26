@@ -1,14 +1,17 @@
 import CellState from "./CellState";
 
 export default class Cell {
-    constructor(state){
+    constructor(state) {
         this.state = state;
     }
-    getNextState(neighbours){
-       if(neighbours === 2 | neighbours === 3){
+
+    getNextState(neighbours) {
+        if (this.state === CellState.ALIVE) {
+            if (neighbours === 2 | neighbours === 3) {
+                return this.state;
+            }
+        } else if (neighbours === 3) {
             return CellState.ALIVE;
-        } else if (neighbours > 4){
-            return CellState.DEAD;
         }
         return CellState.DEAD;
     }
